@@ -29,35 +29,33 @@
 	}
 	$(document).ready(function(){
 		initializeForm(preLoaded,{"font-weight":"bold","padding-right":"30px"},"editStdDelinForm");
-		$("#editStdDelinForm>table").append($("<tr></tr>").append("<td></td>").append("<td><input type='button' value='Search Delinquency' onclick='requestData();'/></td>"));
 		stylizeForm();
+		requestData();
 	});
 	function stylizeForm(){
 		$("#editStdDelinForm table td:even").css({"text-align":"right"});
 		$("#editStdDelinForm td:odd>*").css({"width":"90%","margin-right":"30px"});
 	}
 	function requestData(){
-		var input={};
-		$("#editStdDelinForm>table .singleValuedInput").each(function(){
-			input[$(this).attr("name")]=$(this).val();
-		});
+		var input=<?php echo json_encode($_POST); ?>;
 		$.post("<?php echo base_url();?>index.php/main/StdRegistryDB/7",input,function(data){
 			$("#editStdDelinForm>table .singleValuedInput").each(function(){
 				$(this).removeClass("singleValuedInput").addClass("primaryKey");
 			});
 			initializeForm(SDHForm,{"font-weight":"bold","padding-right":"30px"},"editStdDelinForm");
 			stylizeForm();
-			$(".dateInput").datepicker({
+			$("#editStdDelinForm .dateInput").datepicker({
 				changeMonth: true,
 				changeYear: true,
 				dateFormat:"yy-mm-dd"
 			});
 			for(i in data[0]){
-				$("*[name='"+i+"']").val(data[0][i]);
+				$("#editStdDelinForm *[name='"+i+"']").val(data[0][i]);
 			}
-			$("div[name='Date']").datepicker("setDate",data[0]['Date']);
-			$("input[name='Form5']").attr("checked",data[0]["Form5"]=="X"?true:false);
+			$("#editStdDelinForm div[name='Date']").datepicker("setDate",data[0]['Date']);
+			$("#editStdDelinForm input[name='Form5']").attr("checked",data[0]["Form5"]=="X"?true:false);
 			$("#prototypes>#stdDelinForm>input").appendTo("#editStdDelinForm");
+			$("input:button").button();
 		},"json");
 	}
 	function updateDelinquency(){
@@ -65,11 +63,24 @@
 		$("#editStdDelinForm>table .singleValuedInput").each(function(){
 			input["nonPrimaryKey"][$(this).attr("name")]=$(this).val();
 		});
-		input["nonPrimaryKey"]["Form5"]=($("input[name='Form5']").attr("checked")?"X":"O");
+		input["nonPrimaryKey"]["Form5"]=($("#editStdDelinForm input[name='Form5']").attr("checked")?"X":"O");
 		$("#editStdDelinForm>table .primaryKey").each(function(){
 			input["primaryKey"][$(this).attr("name")]=$(this).val();
 		});
 		$.post("<?php echo base_url();?>index.php/main/StdRegistryDB/7%2e2",input,function(data){
+			i=callerDialog["src"];
+			i.parent().siblings().each(function(){
+				$(this).remove();
+			});
+			i=i.parent().parent();
+			for(j in input["primaryKey"]){
+				i.append("<td>"+input["primaryKey"][j]+"</td>");
+			}
+			for(j in input["nonPrimaryKey"]){
+				i.append("<td>"+input["nonPrimaryKey"][j]+"</td>");
+				input["primaryKey"][j]=input["nonPrimaryKey"][j];
+			}
+			searchResult[callerDialog["input"]]=input["primaryKey"];
 			alert(data);
 		},"html");
 	}

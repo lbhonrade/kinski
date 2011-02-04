@@ -1,8 +1,8 @@
 <?php $this->load->helper("url");?>
 <script type="text/javascript">
 	var subMenu={"Functions":
-					{"Add":"sendData();",
-					 "Search":"requestData();"}
+					{/*"Add":"sendData();",*/
+					 "Search":"requestTransaction();"}
 				}
 	var transForm={
 		"Date(IN)":{"type":0,"name":"Date_In"},
@@ -17,6 +17,11 @@
 		"Received By":{"type":0,"name":"Received_By"},
 		"Date(OUT)":{"type":0,"name":"Date_Out"}
 	};
+	function loadFunctionUI(pageURL){
+		$.post("<?php echo base_url();?>index.php/main/loadPage/"+pageBaseURL+"/"+pageURL,function(data){
+			$(".right").html(data);
+		},"html");
+	}
 	$(document).ready(function(){
 		var i=0,panel="";
 		for(category in subMenu){
@@ -28,9 +33,9 @@
 					panel=panel+menu;
 				}
 			}
-			$(panel).appendTo("#left");
+			$(panel).appendTo(".left");
 		}
-		$("#left input:button,input:reset").button();
+		$(".left input:button,input:reset").button();
 		initializeForm(transForm,{"font-weight":"bold"},"transactionForm");
 		$("#editWin>table").html("");
 		initializeForm(transForm,{"font-weight":"bold"},"editWin");
@@ -58,17 +63,7 @@
 			dateFormat:"yy-mm-dd"
 		});
 	}
-	function sendData(){
-		var input={},i=0;
-		$("#transactionForm .singleValuedInput").each(function(){
-			input[$(this).attr("name")]=$(this).val();
-		});
-		$.post("<?php echo base_url();?>index.php/main/transactionDB/1",input,function(data){
-			alert(data);
-			//alert("Inserted.");
-		},"html");
-	}
-	function requestData(){
+	function requestTransaction(){
 		var input={};
 		var resPanel=$("<div class='bor'><h4>Results</h4></div>");
 		$("#transactionForm .singleValuedInput").each(function(){
@@ -82,7 +77,7 @@
 			$(resPanel).find("table tr>td>input:button").each(function(){
 				$(this).css({"width":"100%","height":"20px","padding":"0"}).button();
 			});
-			$("#right").html(resPanel);
+			$(".right").html(resPanel);
 		},"html");
 	}
 	var editingId=-1,editingRow="";
@@ -124,11 +119,19 @@
 		}
 	}
 </script>
-<div id="right">
+<div class="right">
 </div>
-<div id="left">
+<div class="left">
 	<div class="bor categories">
-		<h3>Transactions from the CAS-OCS</h3>
+		<h3>Insertion Panel</h3>
+		<form>
+			<table style="width: 100%">
+			</table>
+			<input type="button" value="Add Transaction" onclick="loadFunctionUI('TransactionsCASOCS/add');" style="width:100%"/>
+		</form>
+	</div>
+	<div class="bor categories">
+		<h3>Search/Edit/Delete Panel</h3>
 		<form id="transactionForm">
 			<table style="width: 100%">
 			</table>

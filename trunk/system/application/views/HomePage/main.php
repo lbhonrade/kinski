@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div id="right">
+<div class="right">
 	<div class="bor">
         <h4>About the System</h4>
 			<ul style="padding-left:30px;"><li>Management System for the Following Databases:</li>
@@ -32,7 +32,7 @@
 	</div>
 </div>
 
-<div id="left">
+<div class="left">
 	<div class="bor">
 		<div class="categories">
 			<h3>Login</h3>

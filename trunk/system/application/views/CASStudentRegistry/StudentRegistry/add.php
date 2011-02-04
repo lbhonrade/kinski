@@ -88,6 +88,7 @@
 		initializeForm(stdRegForm,{"font-weight":"bold","padding-right":"30px"},"addStdRegForm");
 		$("#addStdRegForm td:even").css({"text-align":"right"});
 		$("#addStdRegForm td:odd *").css({"width":"90%","margin-right":"30px"});
+		$("input:button").button();
 	});
 	function sendData(){
 		var input={"BasicInfo":{},"PerSemester":{}},field,i=0;

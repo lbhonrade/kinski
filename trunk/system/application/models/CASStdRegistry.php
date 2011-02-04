@@ -3,7 +3,7 @@ class CASStdRegistry extends Model {
 	function addStdReg($data){
 		$this->load->database("default");
 		$this->db->insert("sbasic",$data["BasicInfo"]);
-		if(isset($data["PerSemester"]))
+		if(isset($data["PerSemester"])&&is_array($data["PerSemester"]))
 			foreach($data["PerSemester"] as $sem){
 				$this->db->insert("sgwapersem",array_merge($sem,array("Student_Number"=>$data["BasicInfo"]["Student_Number"])));	
 			}
@@ -19,6 +19,13 @@ class CASStdRegistry extends Model {
 		$profile[]=$this->db->get('sgwapersem')->result_array();
 		return $profile;
 	}
+	function searchStdReg($data){
+		$this->load->database("default");
+		$this->db->select("Student_Number,Last_Name,First_Name,Middle_Initial,Course");
+		foreach($data as $field=>$val)
+			$this->db->where($field,$val);
+		return $this->db->get('sbasic')->result_array();
+	}
 	function delGWAPerSem($stdNo){
 		$this->db->delete('sgwapersem', array('Student_Number' => $stdNo)); 
 	}
@@ -29,7 +36,7 @@ class CASStdRegistry extends Model {
 		$this->db->where("Student_Number",$stdNo);
 		$this->db->update("sbasic",$data["BasicInfo"]);
 		$this->delGWAPerSem($stdNo);
-		if(isset($data["PerSemester"]))
+		if(isset($data["PerSemester"])&&is_array($data["PerSemester"]))
 			foreach($data["PerSemester"] as $sem){
 				$this->db->insert("sgwapersem",array_merge($sem,array("Student_Number"=>$stdNo)));	
 			}

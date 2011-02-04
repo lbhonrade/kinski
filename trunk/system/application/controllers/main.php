@@ -23,28 +23,22 @@ class main extends Controller {
 		$path=$seg1;
 		if(strlen($seg2)>0) $path.="/".$seg2;
 		if(strlen($seg3)>0) $path.="/".$seg3;
-		$this->load->view($path);
+		$this->load->view($path,$_POST);
 	}
 	function StdRegistryDB($fxn=-1){
 		$this->load->model('CASStdRegistry');
 		$this->load->library('table');
 		$tmpl = array(
-			'table_open'          => '<table class="highlightRow" border="double thin" style="width:100%;" cellpadding="4" cellspacing="0">',
+			'table_open'          => '<table class="highlightRow" border="double thin" style="text-align:center" cellpadding="4" cellspacing="0">',
 			
-			'heading_row_start'   => '<tr>',
-			'heading_row_end'     => '</tr>',
-			'heading_cell_start'  => '<th>',
-			'heading_cell_end'    => '</th>',
+			'heading_row_start'   => '<tr>','heading_row_end'     => '</tr>',
+			'heading_cell_start'  => '<th>','heading_cell_end'    => '</th>',
 
-			'row_start'           => '<tr>',
-			'row_end'             => '</tr>',
-			'cell_start'          => '<td>',
-			'cell_end'            => '</td>',
+			'row_start'           => '<tr>','row_end'             => '</tr>',
+			'cell_start'          => '<td>','cell_end'            => '</td>',
 
-			'row_alt_start'       => '<tr>',
-			'row_alt_end'         => '</tr>',
-			'cell_alt_start'      => '<td>',
-			'cell_alt_end'        => '</td>',
+			'row_alt_start'       => '<tr>','row_alt_end'         => '</tr>',
+			'cell_alt_start'      => '<td>','cell_alt_end'        => '</td>',
 
 			'table_close'         => '</table>'
 		);
@@ -53,6 +47,23 @@ class main extends Controller {
 				break;
 			case 2:echo json_encode($this->CASStdRegistry->getStdReg($_POST));
 				break;
+			case "2.1":$res=$this->CASStdRegistry->searchStdReg($_POST);
+						if(count($res)==0){
+							echo "<div style='text-align:center'>No matching results found.</div>";
+							return;
+						}
+						?>
+						<script type="text/javascript">searchResult=<?php echo json_encode($res); ?></script>
+						<?php
+						$this->table->set_heading('','Student Number','Last Name','First Name','Middle Initial','Course');
+						$this->table->set_template($tmpl);
+						foreach($res as $i=>$val){
+							$res[$i]=array_merge(array('<input onclick=\'loadFunctionUI($(this),"StudentRegistry/edit",2,'.$i.')\' type="button" value="Edit"/><br/><input onclick=\'deleteData($(this),1,'.$i.');\' type="button" value="Delete"/>'),$res[$i]);
+						}
+						echo "<div style='width:100%;overflow-x:scroll'>";
+						echo $this->table->generate($res);
+						echo "<br/></div>";
+				break;
 			case 3:print_r($this->CASStdRegistry->updateStdReg($_POST));
 				break;
 			case 4:
@@ -60,16 +71,28 @@ class main extends Controller {
 			case 5:print_r($this->CASStdRegistry->addSDH($_POST));
 				break;
 			case 6:$res=$this->CASStdRegistry->getSDH($_POST);
-				   foreach($res as $i=>$val){
+					if(count($res)==0){
+						echo "<div style='text-align:center'>No matching results found.</div>";
+						return;
+					}
+					?>
+					<script type="text/javascript">searchResult=<?php echo json_encode($res); ?></script>
+					<?php
+					foreach($res as $i=>$val){
+						$res[$i]=array_merge(array('<input onclick=\'loadFunctionUI($(this),"DelinquencyHistory/edit",2,'.$i.')\' type="button" value="Edit"/><br/><input onclick=\'deleteData($(this),1,'.$i.');\' type="button" value="Delete"/>'),$res[$i]);
+					}
+					foreach($res as $i=>$val){
 						switch($res[$i]["Semester"]){
 							case 1:$res[$i]["Semester"]="1st";break;
 							case 2:$res[$i]["Semester"]="2nd";break;
 							case 3:$res[$i]["Semester"]="Summer";break;
 						}
-				   }
-					$this->table->set_heading('Student Number','Semester','AY','Form5','Form5A','Status','Remarks','Date');
+					}
+					$this->table->set_heading('','Student Number','Semester','AY','Form5','Form5A','Status','Remarks','Date');
 					$this->table->set_template($tmpl);
+					echo "<div style='width:100%;overflow-x:scroll'>";
 					echo $this->table->generate($res);
+					echo "<br/></div>";
 				break;
 			case 7:echo json_encode($this->CASStdRegistry->getSDH($_POST));
 				break;
@@ -80,6 +103,16 @@ class main extends Controller {
 			case 9:print_r($this->CASStdRegistry->addSDT($_POST));
 				break;
 			case 10:$res=$this->CASStdRegistry->getSDT($_POST);
+					if(count($res)==0){
+						echo "<div style='text-align:center'>No matching results found.</div>";
+						return;
+					}
+					?>
+					<script type="text/javascript">searchResult=<?php echo json_encode($res); ?></script>
+					<?php
+					foreach($res as $i=>$val){
+						$res[$i]=array_merge(array('<input onclick=\'loadFunctionUI($(this),"SDTHistory/edit",2,'.json_encode($res[$i]).')\' type="button" value="Edit"/><br/><input onclick=\'deleteData($(this),1,'.json_encode($res[$i]).');\' type="button" value="Delete"/>'),$res[$i]);
+					}
 					foreach($res as $i=>$val){
 						switch($res[$i]["Sem"]){
 							case 1:$res[$i]["Sem"]="1st";break;
@@ -87,9 +120,11 @@ class main extends Controller {
 							case 3:$res[$i]["Sem"]="Summer";break;
 						}
 					}
-					$this->table->set_heading('Student Number','Semester','AY','Case Number','Academic Status','Remarks','Case Status','Date Ordered','Date Effective');
+					$this->table->set_heading('','Student Number','Semester','AY','Case Number','Academic Status','Remarks','Case Status','Date Ordered','Date Effective');
 					$this->table->set_template($tmpl);
+					echo "<div style='width:100%;overflow-x:scroll'>";
 					echo $this->table->generate($res);
+					echo "<br/></div>";
 				break;
 			case 11:echo json_encode($this->CASStdRegistry->getSDT($_POST));
 				break;

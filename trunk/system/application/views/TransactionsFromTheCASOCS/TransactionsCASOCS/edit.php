@@ -65,6 +65,7 @@
 			$("div[name='Date_Ordered']").datepicker("setDate",data[0]['Date_Ordered']);
 			$("div[name='Date_Effective']").datepicker("setDate",data[0]['Date_Effective']);
 			$("#prototypes>#stdSDTForm>input").appendTo("#editStdSDTForm");
+			$("input:button").button();
 		},"json");
 	}
 	function sendData(){

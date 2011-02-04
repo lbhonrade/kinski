@@ -35,6 +35,7 @@
 			changeYear: true,
 			dateFormat:"yy-mm-dd"
 		});
+		$("input:button").button();
 	});
 	function sendData(){
 		var input={},i=0;

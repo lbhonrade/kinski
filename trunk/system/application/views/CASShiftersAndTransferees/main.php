@@ -12,11 +12,12 @@
 					 "Delete":"Transferees/delete"}};
 	function loadFunctionUI(pageURL){
 		$.post("<?php echo base_url();?>index.php/main/loadPage/"+pageBaseURL+"/"+pageURL,function(data){
-			$("#right").html(data);
+			$(".right").html(data);
 		},"html");
 	}
 	$(document).ready(function(){
-		var i=0,panel="";
+		$("#accordionST").accordion();
+		/*var i=0,panel="";
 		for(category in subMenu){
 			panel="<div class=\"bor\"><div class=\"categories\"><h3>"+category+"</h3>";
 			for(menu in subMenu[category]){
@@ -27,10 +28,21 @@
 					panel=panel+menu;
 				}
 			}
-			$(panel+"</div></div>").appendTo("#left");
+			$(panel+"</div></div>").appendTo(".left");
 		}
-		$("#left").buttonset();
+		$(".left").buttonset();*/
 	});
 </script>
-<div id="right"></div>
-<div id="left"></div>
+<div id="accordionST">
+	<h3><a>Shifters</a></h3>
+	<div>
+		<br/><br/><br/><br/><br/><br/><br/>
+	</div>
+	<h3><a>Transferees</a></h3>
+	<div>
+		<br/><br/><br/><br/><br/><br/><br/>
+	</div>
+</div>
+<!--
+<div class="right"></div>
+<div class="left"></div>-->

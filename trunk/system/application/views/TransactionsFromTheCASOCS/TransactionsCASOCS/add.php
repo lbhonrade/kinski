@@ -23,10 +23,11 @@
 			changeYear: true,
 			dateFormat:"yy-mm-dd"
 		});
+		$("input:button").button();
 	});
 	function sendData(){
 		var input={},i=0;
-		$(".singleValuedInput").each(function(){
+		$("#addTransaction .singleValuedInput").each(function(){
 			input[$(this).attr("name")]=$(this).val();
 		});
 		$.post("<?php echo base_url();?>index.php/main/transactionDB/1",input,function(data){
@@ -40,10 +41,9 @@
 	<form id="addTransaction">
 		<table style="width: 100%">
 			</table><br/>
-		<input type="button" value="Add Transaction" style="width:100%;" onclick="sendData();"/>
+		<input type="button" class="add" value="Add Transaction" style="width:100%;" onclick="sendData();"/>
 	</form>
 	<!--Prototypes-->
 	<div id="prototypes" style="position:absolute;visibility:hidden;">
-		
 	</div>
 </div>

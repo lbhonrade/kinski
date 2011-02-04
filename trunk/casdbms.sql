@@ -3,11 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2011 at 05:19 AM
+-- Generation Time: Feb 02, 2011 at 01:28 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `casdbms`
@@ -50,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `sbasic` (
 --
 
 INSERT INTO `sbasic` (`Student_Number`, `Last_Name`, `First_Name`, `Middle_Initial`, `Course`, `Major`, `Title_Thesis`, `Classification_Start`, `Classification_End`, `GWA`, `Unit`, `Res`, `Adviser`, `Reg_Adviser`, `Home_Number_Street_Vill`, `Home_Barangay`, `Home_Town_City`, `Home_Province`, `Contact_Number`, `College_Number_Street_Vill`, `College_Village_Barangay`, `College_Town_City`) VALUES
-('2008-14391', 'Dela Cruz', 'Juan', 'E', 'BSCS', 'CMSC 128', 'Thesis', 'Se', 'Non', '1.00', 55, 0, 'Angelina Bully', 'Bruce Dilis', '77', 'Balintawak', 'Lipa City', 'Batangas', '09101101010', '66', 'Batong Malake', 'Los Banos'),
+('1', '1', '1', '1', 'BSCS', '1', '1', 'NF', 'Non', '1.00', 1, 0, 'a', 'a', '77', 'a', 'a', 'a', '', '1', 'a', 'a'),
+('2008-14391', 'Dela Cruz', 'Juan', 'E', 'BSCS', 'CMSC 128', 'Thesis', 'Se', 'Non', '1.00', 55, 0, 'Angelina Bully', 'Bruce Dilis', '77', 'Balintawak', 'Lipa City', 'Batangas', '09101101010', '33', 'Batong Malake', 'Los Banos'),
 ('2008-30752', 'Uragon', 'Jeric', 'T', 'BSCS', 'PAD', 'Ang Alamat ng Itlog na Orange', 'So', 'NF', '3.00', 3, 0, '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
@@ -76,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `sdeli` (
 --
 
 INSERT INTO `sdeli` (`Student_Number`, `Semester`, `AY`, `Form5`, `Form5A`, `Status`, `Remarks`, `Date`) VALUES
-('1', 1, 1, 'X', '1', 'Good', '1', '2011-02-26');
+('1', 1, 1, 'X', '1', 'Good', '1', '2011-02-26'),
+('3', 2, 2, 'X', '1', 'Dismissed', '214123413', '2011-02-10');
 
 -- --------------------------------------------------------
 
@@ -100,8 +108,11 @@ CREATE TABLE IF NOT EXISTS `sgwapersem` (
 INSERT INTO `sgwapersem` (`Student_Number`, `Semester`, `AY`, `GWA`, `Status`) VALUES
 ('', 1, 0, 0, 'University Scholar'),
 ('', 3, 0, 0, 'University Scholar'),
+('1', 1, 1, 12, 'Honor Roll'),
+('1', 2, 3, 2, 'Dismissed'),
 ('2008-14391', 1, 2008, 2, 'Good'),
 ('2008-14391', 1, 2009, 0, 'Warning'),
+('2008-14391', 2, 1999, 2, 'Probation'),
 ('2008-14391', 2, 2010, 0, 'Probation'),
 ('2008-14391', 3, 2009, 1, 'Dismissed');
 
@@ -153,12 +164,16 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `Received_By` varchar(32) NOT NULL,
   `Date_Out` date NOT NULL,
   PRIMARY KEY (`Transaction_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `transactions`
 --
 
+INSERT INTO `transactions` (`Transaction_ID`, `Date_In`, `Name_Unit_Who_Requested`, `Student_Number`, `Course_Unit`, `Indicator`, `Operation`, `Code`, `Count`, `Signed_Performed_By`, `Received_By`, `Date_Out`) VALUES
+(1, '2011-01-05', 'FFM', '-', 'OCS', 'pc', 'turn on', 'CIF-013', 1, 'FFM', '---', '2011-01-01'),
+(39, '2011-02-01', 'FFM', '-', 'OCS', 'venetian blinds', 'open/close', 'UPLB-CAS-OCS', 2, 'FFM', '---', '2011-02-08'),
+(38, '2011-02-02', 'Farhan', '2008-37720', 'BSCS/CAS', '3rd Idiot', 'Photograph', 'PHP', 3, 'Raju', 'Rancho', '2011-02-02');
 
 -- --------------------------------------------------------
 
@@ -171,11 +186,12 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   `username` varchar(15) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `userdata`
 --
 
 INSERT INTO `userdata` (`id`, `username`, `password`) VALUES
-(1, 'admin', '861613f5a80abdf5a15ea283daa64be3');
+(1, 'admin', '861613f5a80abdf5a15ea283daa64be3'),
+(2, 'devteam', '9cf726cd5115f2c69050368d03f19b76');

@@ -20,6 +20,7 @@
 		echo script_tag("scripts/ui/minified/jquery.ui.position.min.js");
 		echo script_tag("scripts/ui/minified/jquery.ui.resizable.min.js");
 		echo script_tag("scripts/ui/minified/jquery.ui.dialog.min.js");
+		echo script_tag("scripts/ui/jquery.ui.accordion.js");
 		// echo script_tag("scripts/ui/jquery.ui.core.js");
 		// echo script_tag("scripts/ui/jquery.ui.widget.js");
 		// echo script_tag("scripts/ui/jquery.ui.button.js");
@@ -30,7 +31,6 @@
 		// echo script_tag("scripts/ui/jquery.ui.resizable.js");
 		// echo script_tag("scripts/ui/jquery.ui.dialog.js");
 		echo script_tag("scripts/formFxns.js");
-		//echo script_tag("scripts/ui/jquery.ui.accordion.js");
 		//echo script_tag("scripts/ui/jquery.ui.mouse.js");
 		//echo script_tag("scripts/ui/jquery.ui.sortable.js");
 		//echo script_tag("scripts/ui/jquery.ui.tabs.js");

@@ -30,9 +30,9 @@
 	};
 	$(document).ready(function(){
 		initializeForm(preLoaded,{"font-weight":"bold","padding-right":"30px"},"editStdSDTForm");
-		$("#editStdSDTForm>table").append($("<tr></tr>").append("<td></td>").append("<td><input type='button' value='Search SDT Case' onclick='requestData();'/></td>"));
 		stylizeForm();
-		$(".dateInput").datepicker({
+		requestData();
+		$("#editStdSDTForm .dateInput").datepicker({
 			changeMonth: true,
 			changeYear: true,
 			dateFormat:"yy-mm-dd"
@@ -43,31 +43,29 @@
 		$("#editStdSDTForm td:odd>*").css({"width":"90%","margin-right":"30px"});
 	}
 	function requestData(){
-		var input={};
-		$("#editStdSDTForm>table .singleValuedInput").each(function(){
-			input[$(this).attr("name")]=$(this).val();
-		});
+		var input=<?php echo json_encode($_POST); ?>;
 		$.post("<?php echo base_url();?>index.php/main/StdRegistryDB/11",input,function(data){
 			$("#editStdSDTForm>table .singleValuedInput").each(function(){
 				$(this).removeClass("singleValuedInput").addClass("primaryKey");
 			});
 			initializeForm(sdtForm,{"font-weight":"bold","padding-right":"30px"},"editStdSDTForm");
 			stylizeForm();
-			$(".dateInput").datepicker({
+			$("#editStdSDTForm .dateInput").datepicker({
 				changeMonth: true,
 				changeYear: true,
 				dateFormat:"yy-mm-dd"
 			});
 			for(i in data[0]){
-				$("*[name='"+i+"']").val(data[0][i]);
+				$("#editStdSDTForm *[name='"+i+"']").val(data[0][i]);
 			}
-			$("input:[id='AY2']").attr("value",data[0]['AY']*1+1);
-			$("div[name='Date_Ordered']").datepicker("setDate",data[0]['Date_Ordered']);
-			$("div[name='Date_Effective']").datepicker("setDate",data[0]['Date_Effective']);
+			$("#editStdSDTForm input:[id='AY2']").attr("value",data[0]['AY']*1+1);
+			$("#editStdSDTForm div[name='Date_Ordered']").datepicker("setDate",data[0]['Date_Ordered']);
+			$("#editStdSDTForm div[name='Date_Effective']").datepicker("setDate",data[0]['Date_Effective']);
 			$("#prototypes>#stdSDTForm>input").appendTo("#editStdSDTForm");
+			$("input:button").button();
 		},"json");
 	}
-	function sendData(){
+	function updateSDT(){
 		var input={"primaryKey":{},"nonPrimaryKey":{}};
 		$("#editStdSDTForm>table .singleValuedInput").each(function(){
 			input["nonPrimaryKey"][$(this).attr("name")]=$(this).val();
@@ -76,6 +74,21 @@
 			input["primaryKey"][$(this).attr("name")]=$(this).val();
 		});
 		$.post("<?php echo base_url();?>index.php/main/StdRegistryDB/11%2e2",input,function(data){
+			i=callerDialog["src"];
+			i.parent().siblings().each(function(){
+				$(this).remove();
+			});
+			i=i.parent().parent();
+			
+			for(j in input["primaryKey"]){
+				i.append("<td>"+input["primaryKey"][j]+"</td>");
+			}
+			for(j in input["nonPrimaryKey"]){
+				i.append("<td>"+input["nonPrimaryKey"][j]+"</td>");
+				input["primaryKey"][j]=input["nonPrimaryKey"][j];
+			}
+			
+			searchResult[callerDialog["input"]]=input["primaryKey"];
 			alert(data);
 		},"html");
 	}
@@ -89,7 +102,7 @@
 	<!--Prototypes-->
 	<div id="prototypes" style="position:absolute;visibility:hidden;">
 		<div id="stdSDTForm">
-			<input type="button" value="Save Changes" style="width:100%;" onclick="sendData();"/>
+			<input type="button" value="Save Changes" style="width:100%;" onclick="updateSDT();"/>
 		</div>
 	</div>
 </div>
