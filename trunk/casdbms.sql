@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 02, 2011 at 01:28 PM
+-- Generation Time: Feb 04, 2011 at 10:50 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -56,9 +56,8 @@ CREATE TABLE IF NOT EXISTS `sbasic` (
 --
 
 INSERT INTO `sbasic` (`Student_Number`, `Last_Name`, `First_Name`, `Middle_Initial`, `Course`, `Major`, `Title_Thesis`, `Classification_Start`, `Classification_End`, `GWA`, `Unit`, `Res`, `Adviser`, `Reg_Adviser`, `Home_Number_Street_Vill`, `Home_Barangay`, `Home_Town_City`, `Home_Province`, `Contact_Number`, `College_Number_Street_Vill`, `College_Village_Barangay`, `College_Town_City`) VALUES
-('1', '1', '1', '1', 'BSCS', '1', '1', 'NF', 'Non', '1.00', 1, 0, 'a', 'a', '77', 'a', 'a', 'a', '', '1', 'a', 'a'),
-('2008-14391', 'Dela Cruz', 'Juan', 'E', 'BSCS', 'CMSC 128', 'Thesis', 'Se', 'Non', '1.00', 55, 0, 'Angelina Bully', 'Bruce Dilis', '77', 'Balintawak', 'Lipa City', 'Batangas', '09101101010', '33', 'Batong Malake', 'Los Banos'),
-('2008-30752', 'Uragon', 'Jeric', 'T', 'BSCS', 'PAD', 'Ang Alamat ng Itlog na Orange', 'So', 'NF', '3.00', 3, 0, '', '', '', '', '', '', '', '', '', '');
+('2008-14391', 'Dela Cruz', 'Juan', 'H', 'BSCS', 'CMSC 128', 'Thesis', 'Se', 'Non', '1.00', 55, 0, 'Angelina Bully', 'Bruce Dilis', '77', 'Balintawak', 'Lipa City', 'Batangas', '09101101010', '33', 'Batong Malake', 'Los Banos'),
+('2008-30752', 'Uragon', 'Jeric', 'A', 'BSCS', 'PAD', 'Ang Alamat ng Itlog na Orange', 'So', 'NF', '3.00', 3, 0, '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -83,8 +82,8 @@ CREATE TABLE IF NOT EXISTS `sdeli` (
 --
 
 INSERT INTO `sdeli` (`Student_Number`, `Semester`, `AY`, `Form5`, `Form5A`, `Status`, `Remarks`, `Date`) VALUES
-('1', 1, 1, 'X', '1', 'Good', '1', '2011-02-26'),
-('3', 2, 2, 'X', '1', 'Dismissed', '214123413', '2011-02-10');
+('1', 1, 1, 'X', '1', 'Honor Roll', '1', '2011-02-17'),
+('3', 2, 2, 'X', '1', 'Honor Roll', '214123413', '2011-02-10');
 
 -- --------------------------------------------------------
 
@@ -106,10 +105,7 @@ CREATE TABLE IF NOT EXISTS `sgwapersem` (
 --
 
 INSERT INTO `sgwapersem` (`Student_Number`, `Semester`, `AY`, `GWA`, `Status`) VALUES
-('', 1, 0, 0, 'University Scholar'),
-('', 3, 0, 0, 'University Scholar'),
-('1', 1, 1, 12, 'Honor Roll'),
-('1', 2, 3, 2, 'Dismissed'),
+('1', 2, 2010, 2, 'University Scholar'),
 ('2008-14391', 1, 2008, 2, 'Good'),
 ('2008-14391', 1, 2009, 0, 'Warning'),
 ('2008-14391', 2, 1999, 2, 'Probation'),
@@ -140,8 +136,8 @@ CREATE TABLE IF NOT EXISTS `ssdt` (
 --
 
 INSERT INTO `ssdt` (`Student_Number`, `Sem`, `AY`, `Case_Number`, `Academic_Status`, `Remarks`, `Case_Status`, `Date_Ordered`, `Date_Effective`) VALUES
-('1', 1, 1, '1', 'University Scholar', '4234', '2134', '2011-01-19', '2011-01-12'),
-('1', 1, 2, '2', 'Dismissed', '1', '1', '2011-02-15', '2011-02-22'),
+('1', 1, 1, '1', 'Probation', '4234', '2134', '2011-01-19', '2011-01-12'),
+('1', 1, 2, '2', 'Dismissed', '2222', '1', '2011-02-15', '2011-02-22'),
 ('2', 1, 1, '1', 'College Scholar', '2', '2', '2011-02-02', '2011-02-02');
 
 -- --------------------------------------------------------
@@ -164,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `Received_By` varchar(32) NOT NULL,
   `Date_Out` date NOT NULL,
   PRIMARY KEY (`Transaction_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
 
 --
 -- Dumping data for table `transactions`
@@ -172,8 +168,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
 
 INSERT INTO `transactions` (`Transaction_ID`, `Date_In`, `Name_Unit_Who_Requested`, `Student_Number`, `Course_Unit`, `Indicator`, `Operation`, `Code`, `Count`, `Signed_Performed_By`, `Received_By`, `Date_Out`) VALUES
 (1, '2011-01-05', 'FFM', '-', 'OCS', 'pc', 'turn on', 'CIF-013', 1, 'FFM', '---', '2011-01-01'),
-(39, '2011-02-01', 'FFM', '-', 'OCS', 'venetian blinds', 'open/close', 'UPLB-CAS-OCS', 2, 'FFM', '---', '2011-02-08'),
-(38, '2011-02-02', 'Farhan', '2008-37720', 'BSCS/CAS', '3rd Idiot', 'Photograph', 'PHP', 3, 'Raju', 'Rancho', '2011-02-02');
+(2, '2011-02-01', 'FFM', '-', 'OCS', 'venetian blinds', 'open/close', 'UPLB-CAS-OCS', 2, 'FFM', '---', '2011-02-08');
 
 -- --------------------------------------------------------
 

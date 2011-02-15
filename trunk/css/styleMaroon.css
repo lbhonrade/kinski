@@ -54,6 +54,7 @@ body {
 
 #header {
 	height: 125px;
+	text-align:center;
 	background: url(../images/maroon/header.jpg);
 	background-repeat:no-repeat;
 	background-position: left;
@@ -63,6 +64,9 @@ body {
 	height: 100px;
 	text-align: center;
 	padding-top: 25px;
+	margin-left:30px;
+	display:inline-block;
+	vertical-align:top;
 }
 
 
@@ -293,6 +297,9 @@ body {
 /*Added Styles*/
 .highlightRow tr:hover{
 	background:#fed7b0;
+}
+#header img{
+	height:100%;
 }
 .rounded-bottom{-moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; border-bottom-left-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; border-bottom-right-radius: 15px; }
 
