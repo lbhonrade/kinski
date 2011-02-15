@@ -1,0 +1,38 @@
+Installing CAS Database Management System
+     __________________________________________________________________
+
+Downloading the System
+
+	Download and extract the system at http://kinski.googlecode.com located at the 
+	download section. 
+	 
+General Installation Considerations
+
+   Before installing the system, a web server package is required. WAMP was used in making
+   the system. Other Web Server Packages can also be used, but WAMP is recommended. Remember 
+   to run the package whenever you will start the system. For more information about WAMP 
+   server, visit http://en.wikipedia.org/wiki/WAMP.
+   
+	Extract the file downloaded from Kinski @ Google Codes at /www/cmsc128proj subdirectory of 
+	the WAMP Server. You have to create a subdirectory called cmsc128proj. It is usually at 
+	C:/wamp/www by default.
+	
+	After you have extracted the file, run wampmanager.exe located at C:/wamp/. 
+	
+	Install the casdbms.sql on the database. The database name should be casdbms. The username is
+	root and there is no password.
+	
+	You can now run the system at your respective web browsers. Type http://localhost/cmsc128proj/ 
+	to open the project.
+	
+	Log in using the username 'admin' and password 'kinski'.
+	
+	Have fun!
+	
+
+	
+	
+
+	
+   
+   
