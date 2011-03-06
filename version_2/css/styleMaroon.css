@@ -1,0 +1,324 @@
+/*
+Design by Metamorphosis Design
+http://www.metamorphozis.com
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+*
+{
+margin: 0px;
+padding: 0px;
+}
+
+a:link {
+	color: #d8ffdc;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+
+a:visited {
+	color: #d8ffdc;
+}
+
+body {	
+	background-color: #fed7b0;
+	font: 12px Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+#content{
+	margin: 0 auto;
+	width:1014px;
+	text-align: left;
+}
+
+#main{
+	width:1014px;
+	margin: 0 auto;
+	clear:both;
+}
+
+#mainbot{
+	background: url(../images/maroon/mainbot.jpg) no-repeat bottom left;
+}
+
+#header_bg{
+	background: url(../images/maroon/header_bg.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+}
+
+#header {
+	height: 125px;
+	min-width:1014px;
+	text-align:center;
+	background: url(../images/maroon/header.jpg);
+	background-repeat:no-repeat;
+	background-position: left;
+}
+
+#logo {
+	height: 100px;
+	text-align: center;
+	padding-top: 25px;
+	margin-left:30px;
+	display:inline-block;
+	vertical-align:top;
+}
+
+
+#logo a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-style: italic;
+	font-size: 18px;
+	color: #ffffff;
+}
+#logo H2 a{
+	font-size: 12px;
+}
+
+
+#menu{
+	width:1014px;
+	height: 65px;
+	margin: 0 auto;
+}
+#menu_bg{
+	height: 82px;
+	min-width:1014px;
+	background: url(../images/maroon/menu_bg.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+}
+
+#menu ul {
+	list-style: none;
+	padding-top: 4px;
+	padding-left: 55px;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	font-weight: normal;
+	font-size: 16px;
+	float: left;
+	width: 200px;
+	height: 42px;
+	display: block;
+	padding-top: 20px;
+}
+
+#menu a:hover{
+	width: 200px;
+	height: 42px;
+	background: url(../images/maroon/menu_hov.png);
+}
+
+#menu .current a{
+	width: 230px;
+	height: 42px;
+	background: url(../images/maroon/menu_cur.png);
+	font-weight:bold;
+	color:#701212;
+}
+
+.bor{
+	border: 1px solid #701212;
+	background-color: #ffffff;
+	margin-bottom: 10px;
+}
+
+.categories ul li a{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 12px;
+	text-decoration:none;
+}
+
+.categories label{
+	width:247px;
+}
+
+.left{
+	width: 251px;
+}
+
+.left a:hover{
+	color: #000000;
+}
+
+.left H3{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	width: 249px;
+	min-height: 31px;
+	font-weight: normal;
+	padding-top:10px;
+	color: #ffffff;
+	background: url(../images/maroon/titleleft.jpg) #701212;
+	background-repeat:repeat-x;
+	text-align: center;
+}
+
+.left ul {
+	list-style: none;
+	padding-top: 5px;
+	padding-left:15px;
+}
+
+.left li {
+	background: url(../images/maroon/ls.png);
+	background-repeat:no-repeat;
+	background-position: top left;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	margin-bottom: 3px;
+}
+
+.right{
+	float: right;
+	width: 750px;
+}
+
+.right a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight:bold;
+	color: #701212;
+}
+
+.right a:hover{
+	color: #000000;
+	text-decoration:none;
+}
+
+.right H4,#content>.bor H4{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	width: 728px;
+	height: 41px;
+	font-weight: normal;
+	padding-top: 10px;
+	color: #ffffff;
+	background: url(../images/maroon/titleleft.jpg);
+	background-repeat:repeat-x;
+	text-align: left;
+	padding-left: 20px;
+}
+
+#content>.bor H4{
+	width:993px;
+}
+
+#cen{
+	background: url(../images/maroon/cenbg.jpg) top left;
+	padding-bottom:5px;
+}
+
+.right p {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+.right h2 {
+	margin: 0;
+	padding: 0;
+	padding-top: 10px;
+	color: #196050;
+}
+
+.read{
+	text-align: right;
+	padding-bottom:10px;
+}
+
+.read a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	text-decoration: none;
+	width: 76px;
+	height:17px;
+	padding-top: 2px;
+	padding-right: 20px;
+	padding-left:20px;
+	padding-bottom:5px;
+}
+
+.right .read2{
+	text-align: right;
+	clear:both;
+	padding-bottom:10px;
+}
+
+.right .read2 a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	text-decoration: none;
+	width: 71px;
+	height:15px;
+	padding-right: 6px;
+	padding-left:8px;
+	padding-bottom:1px;
+	background: url(../images/maroon/read.jpg);
+	background-repeat:no-repeat;
+	background-position:bottom;
+	font-weight:normal;
+}
+
+#footer {
+	height: 58px;
+	clear: both;
+	padding-top: 30px;
+	min-width:1014px;
+	background: url(../images/maroon/footer.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+}
+
+#footer p {
+	margin: 0;
+	font-size: 10px;
+	text-align: center;
+	color: #ffffff;
+}
+
+#footer a {
+	color: #ffffff;
+}
+/*Added Styles*/
+.highlightRow tr:hover{
+	background:#fed7b0;
+}
+#header img{
+	height:100%;
+}
+a:hover{
+	cursor: pointer;
+}
+#degreesEarned td{
+	border:1px solid #000;
+	padding:2px;
+	text-align:center;
+}
+#UAManagerPortal,#PAManagerPortal{
+	width:100%;
+	text-align:center;
+}
+.rounded-bottom{-moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; border-bottom-left-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; border-bottom-right-radius: 15px; }
+
